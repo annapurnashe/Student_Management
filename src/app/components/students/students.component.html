@@ -1,0 +1,49 @@
+<div class="students-container">
+  <div class="header">
+    <h1>🎓 Student Management</h1>
+    <button class="btn-add" (click)="addStudent()">➕ Add Student</button>
+  </div>
+
+  <div class="filters">
+    <div class="search-box">
+      <input 
+        type="text" 
+        [(ngModel)]="searchTerm" 
+        (input)="filterStudents()"
+        placeholder="🔍 Search by name, roll number, email..."
+      >
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading...</div>
+
+  <div class="table-container" *ngIf="!loading">
+    <table>
+      <thead>
+        <tr>
+          <th>Roll No</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Course</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of filteredStudents">
+          <td><strong>{{ student.roll_number }}</strong></td>
+          <td>{{ student.first_name }} {{ student.last_name }}</td>
+          <td>{{ student.email }}</td>
+          <td>{{ student.course }}</td>
+          <td class="actions">
+            <button class="btn-view" (click)="viewStudent(student.id!)">👁️</button>
+            <button class="btn-edit" (click)="editStudent(student.id!)">✏️</button>
+            <button class="btn-delete" (click)="deleteStudent(student.id!)">🗑️</button>
+          </td>
+        </tr>
+        <tr *ngIf="filteredStudents.length === 0">
+          <td colspan="5" class="no-data">No students found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
