@@ -1,0 +1,23 @@
+<div class="detail-container">
+  <div *ngIf="loading" class="loading">Loading...</div>
+
+  <div *ngIf="!loading && student" class="card">
+    <div class="header">
+      <h2>{{ student.first_name }} {{ student.last_name }}</h2>
+      <div class="actions">
+        <button class="btn-edit" (click)="editStudent()">✏️ Edit</button>
+        <button class="btn-delete" (click)="deleteStudent()">🗑️ Delete</button>
+        <button class="btn-back" (click)="goBack()">← Back</button>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-section">
+        <p><strong>Roll Number:</strong> {{ student.roll_number }}</p>
+        <p><strong>Name:</strong> {{ student.first_name }} {{ student.last_name }}</p>
+        <p><strong>Email:</strong> {{ student.email }}</p>
+        <p><strong>Course:</strong> {{ student.course }}</p>
+      </div>
+    </div>
+  </div>
+</div>
